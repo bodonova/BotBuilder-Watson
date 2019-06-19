@@ -3,7 +3,7 @@ applications:
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: cortana-bot
-  host: cortana-bot
+  name: cortana-bot-coca-cola
+  host: cortana-bot-coca-cola
   disk_quota: 1024M
   buildpack: sdk-for-nodejs
