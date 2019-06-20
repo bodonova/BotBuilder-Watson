@@ -105,10 +105,14 @@ var bot = new builder.UniversalBot(connector, function (session) {
         input: { text: session.message.text}
     };
 
+    // If the user asked us to start over create a new context
     if ((session.message.text.toLowerCase() == 'start over') || (session.message.text.toLowerCase() == 'start_over')) {
-      console.log('Starting a new Conversation for '+session.message.address.conversation.id);
-
+      var convId = ession.message.address.conversation.id;
+      console.log('Starting a new Conversation for '+convId);
+      if (contexts[convId]) 
+        delete contexts[convId];
     }
+  
     var conversationContext = findOrCreateContext(session.message.address.conversation.id);	
     if (!conversationContext) conversationContext = {};
     payload.context = conversationContext.watsonContext;
@@ -132,9 +136,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
 function findOrCreateContext (convId){
       // Let's see if we already have a session for the user convId
-    if (!contexts)
-        contexts = [];
-        
     if (!contexts[convId]) {
         // No session found for user convId, let's create a new one
         contexts[convId] = {workspaceId: workspace, watsonContext: {'client_type': 'MS_Teams'}};
