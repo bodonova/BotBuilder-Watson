@@ -107,7 +107,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
     // If the user asked us to start over create a new context
     if ((session.message.text.toLowerCase() == 'start over') || (session.message.text.toLowerCase() == 'start_over')) {
-      var convId = ession.message.address.conversation.id;
+      var convId = session.message.address.conversation.id;
       console.log('Starting a new Conversation for '+convId);
       if (contexts[convId]) 
         delete contexts[convId];
